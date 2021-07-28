@@ -1,6 +1,9 @@
 package com.db.school.demo.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,7 +24,13 @@ public class CustomerService implements CustomerServiceContract {
     }
 
     @Override
-    public List<Customer> getCustomersByName(String firstname) {
-        return customerRepository.giveMeCustomers(firstname);
+    public List<Customer> getCustomersByName(String firstname, int pageNumber) {
+        Pageable pageRequest = PageRequest.of(pageNumber, 2);
+        return customerRepository.getAllByFirstName(firstname,pageRequest).toList();
     }
+    public List<Customer> getCustomersSorted(String firstname) {
+        return customerRepository.getAllByFirstNameAndSort(firstname,Sort.by("id").descending());
+    }
+
+
 }

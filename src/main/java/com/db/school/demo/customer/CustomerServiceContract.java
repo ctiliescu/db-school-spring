@@ -6,5 +6,6 @@ import java.util.Optional;
 public interface CustomerServiceContract {
     public Customer createCustomer(Customer customer);
     public Optional<Customer> getCustomer(int id);
-    public List<Customer> getCustomersByName(String firstname);
+    public List<Customer> getCustomersByName(String firstname,int pageNumber);
+    public List<Customer> getCustomersSorted(String firstname);
 }

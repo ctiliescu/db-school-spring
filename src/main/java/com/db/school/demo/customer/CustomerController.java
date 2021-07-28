@@ -26,9 +26,15 @@ public class CustomerController {
         }
     }
 
+
     @GetMapping("/search")
-    public List<Customer> getCustomersByName(@RequestParam("firstname") String firstname){
-        return customerService.getCustomersByName(firstname);
+    public List<Customer> getCustomersByName(@RequestParam("firstname") String firstname,@RequestParam("pageNumber") int pageNumber){
+        return customerService.getCustomersByName(firstname,pageNumber);
+    }
+
+    @GetMapping("/search/sort")
+    public List<Customer> getCustomersSorted(@RequestParam("lastname") String lastname){
+        return customerService.getCustomersSorted(lastname);
     }
 
     @PostMapping
