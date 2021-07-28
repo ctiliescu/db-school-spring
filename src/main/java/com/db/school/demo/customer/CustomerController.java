@@ -1,5 +1,7 @@
 package com.db.school.demo.customer;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,10 @@ import java.util.Optional;
 @RequestMapping("/customers")
 public class CustomerController {
 
+    private Logger logger = LoggerFactory.getLogger(CustomerController.class);
+
+
+
     @Autowired
     private CustomerServiceContract customerService;
 
@@ -19,11 +25,21 @@ public class CustomerController {
     public ResponseEntity<Customer> getCustomer(@RequestParam("id") int id){
         //return customerService.getCustomer(id).map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         Optional<Customer> customer = customerService.getCustomer(id);
+        logger.info("WE have a getCustomer method invoked forId:" + id);
         if (customer.isPresent()) {
             return new ResponseEntity<>(customer.get(), HttpStatus.OK);
         } else {
+            logger.warn("getCustomer hasn't found any Customers with id: "+ id);
+//            try{
+//                customer.get();
+//            }catch (Exception e){
+//                logger.error("Generated error in getCustomer with id", e);
+//                logger.error("Generated error in getCustomer with id");
+//        }
+          //  customer.get();
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+
     }
 
 
