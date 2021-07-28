@@ -1,6 +1,13 @@
 package com.db.school.demo.customer;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="customers")
 public class Customer {
+    @Id
     private int id;
     private String username;
     private String lastName;
