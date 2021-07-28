@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,14 +50,22 @@ public class CustomerController {
         return customerService.getCustomersByName(firstname,pageNumber);
     }
 
+    @GetMapping("/auth")
+    public Customer getCustomersByName(@CookieValue(name = "userId") int id){
+        return customerService.getCustomer(id).get();
+    }
+
     @GetMapping("/search/sort")
     public List<Customer> getCustomersSorted(@RequestParam("lastname") String lastname){
         return customerService.getCustomersSorted(lastname);
     }
 
     @PostMapping
-    public Customer createCustomer(@RequestBody Customer customer) {
-        return customerService.createCustomer(customer);
+    public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer, HttpServletResponse response) {
+        final Customer newCustomer = customerService.createCustomer(customer);
+        response.addCookie(new Cookie("userId", Integer.toString(newCustomer.getId())));
+        return new ResponseEntity<>(newCustomer, HttpStatus.CREATED);
     }
+
 }
 
