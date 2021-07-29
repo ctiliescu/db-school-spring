@@ -1,17 +1,15 @@
 package com.db.school.demo.dummy.services.demo;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service("DemoB")
+@Slf4j
 public class DemoServiceB implements DemoService {
-    Logger logger = LoggerFactory.getLogger(DemoServiceB.class);
-
     @Override
     public String displayDemoMessage() {
         String message = "DemoServiceB display message from B.";
-        logger.info(message);
+        log.info(message);
         return message;
     }
 }
