@@ -48,11 +48,12 @@ public class DemoController {
     @GetMapping("/demo/multiplechoice")
     public String getService(){
         Optional<DemoService> demoServiceOp = demoServiceList.stream().filter(x -> x.getClass().getSimpleName().equals(type)).findFirst();
-        if(demoServiceOp.isPresent()){
+        return demoServiceOp.map(DemoService::displayDemoMessage).orElse("not found message");
+        /*if(demoServiceOp.isPresent()){
             return demoServiceOp.get().displayDemoMessage();
         } else {
-            return null;
-        }
+            return "not found message";
+        }*/
     }
 
 
