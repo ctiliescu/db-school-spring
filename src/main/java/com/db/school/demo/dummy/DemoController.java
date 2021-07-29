@@ -5,15 +5,20 @@ import com.db.school.demo.dummy.services.scope.PrototypeDummyService;
 import com.db.school.demo.dummy.services.scope.RequestDummyService;
 import com.db.school.demo.dummy.services.scope.SingletonDummyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class DemoController {
     private int counter;
+
+    @Value("${service.type}")
+    private String type;
 
     public DemoController() {
         System.out.println("----------------> DemoController was created! <--------------------");
@@ -39,4 +44,16 @@ public class DemoController {
 
         return "Data about customer " + name + " - " + counter;
     }
+
+    @GetMapping("/demo/multiplechoice")
+    public String getService(){
+        Optional<DemoService> demoServiceOp = demoServiceList.stream().filter(x -> x.getClass().getSimpleName().equals(type)).findFirst();
+        if(demoServiceOp.isPresent()){
+            return demoServiceOp.get().displayDemoMessage();
+        } else {
+            return null;
+        }
+    }
+
+
 }

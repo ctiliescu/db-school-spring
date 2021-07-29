@@ -9,7 +9,9 @@ public class DemoServiceB implements DemoService {
     Logger logger = LoggerFactory.getLogger(DemoServiceB.class);
 
     @Override
-    public void displayDemoMessage() {
-        logger.info("DemoServiceB display message from B.");
+    public String displayDemoMessage() {
+        String message = "DemoServiceB display message from B.";
+        logger.info(message);
+        return message;
     }
 }
