@@ -5,6 +5,7 @@ import com.db.school.demo.dummy.services.scope.PrototypeDummyService;
 import com.db.school.demo.dummy.services.scope.RequestDummyService;
 import com.db.school.demo.dummy.services.scope.SingletonDummyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,8 +34,9 @@ public class DemoController {
     private RequestDummyService requestDummyService;
     @Autowired
     private PrototypeDummyService prototypeDummyService;
-//    @Autowired
-//    private DemoService demoService;
+    @Autowired
+    @Qualifier("DemoB")
+    private DemoService demoService;
     @Autowired
     List<DemoService> demoServiceList;
 
@@ -57,6 +59,11 @@ public class DemoController {
         } else {
             return "not found message";
         }*/
+    }
+
+    @GetMapping("/demo/qualifier")
+    public String getDemoQualifier() {
+        return demoService.displayDemoMessage();
     }
 
 
