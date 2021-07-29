@@ -20,6 +20,9 @@ public class DemoController {
     @Value("${service.type}")
     private String type;
 
+    @Value("${spring.profiles.active}")
+    private String profile;
+
     public DemoController() {
         System.out.println("----------------> DemoController was created! <--------------------");
     }
@@ -48,7 +51,7 @@ public class DemoController {
     @GetMapping("/demo/multiplechoice")
     public String getService(){
         Optional<DemoService> demoServiceOp = demoServiceList.stream().filter(x -> x.getClass().getSimpleName().equals(type)).findFirst();
-        return demoServiceOp.map(DemoService::displayDemoMessage).orElse("not found message");
+        return demoServiceOp.map(DemoService::displayDemoMessage).orElse(profile);
         /*if(demoServiceOp.isPresent()){
             return demoServiceOp.get().displayDemoMessage();
         } else {
