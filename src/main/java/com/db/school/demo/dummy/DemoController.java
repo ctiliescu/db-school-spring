@@ -1,6 +1,9 @@
 package com.db.school.demo.dummy;
 
-import com.db.school.demo.dummy.services.*;
+import com.db.school.demo.dummy.services.demo.DemoService;
+import com.db.school.demo.dummy.services.scope.PrototypeDummyService;
+import com.db.school.demo.dummy.services.scope.RequestDummyService;
+import com.db.school.demo.dummy.services.scope.SingletonDummyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

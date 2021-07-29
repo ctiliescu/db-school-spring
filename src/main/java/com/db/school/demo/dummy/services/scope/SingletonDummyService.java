@@ -1,4 +1,4 @@
-package com.db.school.demo.dummy.services;
+package com.db.school.demo.dummy.services.scope;
 
 import org.springframework.stereotype.Service;
 
