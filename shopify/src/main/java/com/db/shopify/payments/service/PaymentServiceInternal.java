@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 @Profile("dev")
-public class PaymentServiceDev implements PaymentServiceContract {
+public class PaymentServiceInternal implements PaymentServiceContract {
     @Autowired
     private PaymentRepository paymentRepository;
 

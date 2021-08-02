@@ -5,12 +5,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.http.HttpRequest;
 import java.util.List;
+
+import java.lang.Object;
+import jdk.incubator.*;
 
 
 @Service
 @Profile("prod")
-public class PaymentServiceDeposit implements PaymentServiceContract {
+public class PaymentServiceExternal implements PaymentServiceContract {
 
     @Autowired
     private PaymentRepository paymentRepository;
@@ -23,8 +29,12 @@ public class PaymentServiceDeposit implements PaymentServiceContract {
         return paymentRepository.getById(id);
     }
 
-    public Payment insertPayment(Payment payment) {
+    public Payment insertPayment(Payment payment) throws URISyntaxException {
         System.out.println("Amount is over threshold");
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(new URI("localhost:8081/payments/validation"))
+                .build();
+
         paymentRepository.save(payment);
         return payment;
     }
