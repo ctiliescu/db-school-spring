@@ -1,4 +1,4 @@
-package com.db.school.demo.customer;
+package com.db.shopify.customer;
 
 import java.util.List;
 import java.util.Optional;

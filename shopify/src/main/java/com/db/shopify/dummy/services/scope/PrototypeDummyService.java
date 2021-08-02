@@ -1,4 +1,4 @@
-package com.db.school.demo.dummy.services.scope;
+package com.db.shopify.dummy.services.scope;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;

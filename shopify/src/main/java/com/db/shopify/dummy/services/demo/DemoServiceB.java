@@ -1,4 +1,4 @@
-package com.db.school.demo.dummy.services.demo;
+package com.db.shopify.dummy.services.demo;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

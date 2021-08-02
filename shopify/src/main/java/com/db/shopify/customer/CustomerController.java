@@ -1,4 +1,4 @@
-package com.db.school.demo.customer;
+package com.db.shopify.customer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

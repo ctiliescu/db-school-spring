@@ -1,9 +1,9 @@
-package com.db.school.demo.dummy;
+package com.db.shopify.dummy;
 
-import com.db.school.demo.dummy.services.demo.DemoService;
-import com.db.school.demo.dummy.services.scope.PrototypeDummyService;
-import com.db.school.demo.dummy.services.scope.RequestDummyService;
-import com.db.school.demo.dummy.services.scope.SingletonDummyService;
+import com.db.shopify.dummy.services.demo.DemoService;
+import com.db.shopify.dummy.services.scope.PrototypeDummyService;
+import com.db.shopify.dummy.services.scope.RequestDummyService;
+import com.db.shopify.dummy.services.scope.SingletonDummyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -40,7 +40,7 @@ public class DemoController {
     @Autowired
     List<DemoService> demoServiceList;
 
-    @GetMapping("/demo")
+    @GetMapping("/com/db/shopify")
     public String getCustomer(@RequestParam("name") String name){
         counter++;
         requestDummyService.test();
@@ -50,7 +50,7 @@ public class DemoController {
         return "Data about customer " + name + " - " + counter;
     }
 
-    @GetMapping("/demo/multiplechoice")
+    @GetMapping("/com/db/shopify/multiplechoice")
     public String getService(){
         Optional<DemoService> demoServiceOp = demoServiceList.stream().filter(x -> x.getClass().getSimpleName().equals(type)).findFirst();
         return demoServiceOp.map(DemoService::displayDemoMessage).orElse(profile);
@@ -61,7 +61,7 @@ public class DemoController {
         }*/
     }
 
-    @GetMapping("/demo/qualifier")
+    @GetMapping("/com/db/shopify/qualifier")
     public String getDemoQualifier() {
         return demoService.displayDemoMessage();
     }

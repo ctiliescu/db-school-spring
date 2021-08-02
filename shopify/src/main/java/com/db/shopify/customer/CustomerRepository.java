@@ -1,4 +1,4 @@
-package com.db.school.demo.customer;
+package com.db.shopify.customer;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
