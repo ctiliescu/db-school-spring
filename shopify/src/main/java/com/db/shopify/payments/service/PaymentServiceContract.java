@@ -1,6 +1,8 @@
-package com.db.shopify.payments;
+package com.db.shopify.payments.service;
 
 
+
+import com.db.shopify.payments.model.Payment;
 
 import java.util.List;
 

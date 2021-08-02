@@ -1,6 +1,7 @@
-package com.db.shopify.payments;
+package com.db.shopify.payments.service;
 
 
+import com.db.shopify.payments.model.Payment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -8,39 +9,38 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@Profile("prod")
-public class PaymentServiceCard implements PaymentServiceContract {
-
+@Profile("dev")
+public class PaymentServiceDev implements PaymentServiceContract {
     @Autowired
     private PaymentRepository paymentRepository;
 
-    public List<Payment> findAll() {
+    public List<Payment> findAll(){
         return paymentRepository.findAll();
     }
 
     public Payment insertPayment(Payment payment) {
-        System.out.println("Sum is under threshold");
+        System.out.println("Dev");
         paymentRepository.save(payment);
         return payment;
     }
 
-    @Override
-    public Payment deletePaymentById(int id) {
+
+
+
+
+    public Payment deletePaymentById(int id){
         Payment byId = paymentRepository.getById(id);
         paymentRepository.deleteById(byId.getCustomerId());
         return byId;
     }
 
-    public Payment updatePayment(Payment payment) {
+    public Payment updatePayment(Payment payment){
         Payment oldPayment = paymentRepository.getById(payment.getCustomerId());
         paymentRepository.save(payment);
         return oldPayment;
     }
 
-    @Override
-    public Payment findById(int id) {
+    public Payment findById(int id){
         return paymentRepository.getById(id);
     }
 }
-
-

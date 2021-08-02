@@ -1,4 +1,4 @@
-package com.db.shopify.payments;
+package com.db.shopify.payments.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

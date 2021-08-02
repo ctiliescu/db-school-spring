@@ -1,51 +1,31 @@
 package com.db.shopify.payments;
 
 
+import com.db.shopify.payments.service.PaymentServiceContract;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class PaymentServiceFactory {
 
-    private PaymentServiceContract service;
+    @Value("${service.payment}")
+    private String paymentForHighValue;
 
-    @Value("${spring.profiles.active}")
-    private String profile;
-
-    @Bean
-    public PaymentServiceContract cardService() {
-        service = new PaymentServiceCard();
-        return service;
-    }
-
-    @Bean
-    public PaymentServiceContract depositService() {
-        service = new PaymentServiceDeposit();
-        return service;
-    }
-
-    @Bean
-    public PaymentServiceContract devService() {
-        service = new PaymentServiceDev();
-        return service;
-    }
+    @Autowired
+    public List<PaymentServiceContract> paymentServiceContractList;
 
     public PaymentServiceContract getService(double amount) {
-        System.out.println(profile);
-        if (profile.equals("dev")) {
-            return devService();
-        }
-        if (amount > 200) {
-            return depositService();
+        if (paymentServiceContractList.size() == 1) {
+            return paymentServiceContractList.get(0);
         } else {
-            return cardService();
+            if (amount > 200) {
+                return paymentServiceContractList.stream().filter(p -> p.getClass().getSimpleName().equals(paymentForHighValue)).findFirst().get();
+            } else {
+                return paymentServiceContractList.stream().filter(p -> !p.getClass().getSimpleName().equals(paymentForHighValue)).findFirst().get();
+            }
         }
-    }
-
-    @Bean
-    public PaymentServiceContract accessService() {
-        return service;
     }
 }
 
