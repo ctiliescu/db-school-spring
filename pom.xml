@@ -13,13 +13,16 @@
 		<version>2.5.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.db.school.demo</groupId>
-	<artifactId>demo</artifactId>
+	<groupId>com.db</groupId>
+	<artifactId>parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>demo</name>
 	<description>Demo project with Spring Boot for DB School</description>
+
 	<properties>
 		<java.version>11</java.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+			<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 	<dependencies>
 		<dependency>
