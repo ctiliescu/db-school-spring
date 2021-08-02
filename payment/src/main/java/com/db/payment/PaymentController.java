@@ -19,6 +19,7 @@ public class PaymentController {
         if (random.nextInt(10) >= 8) {
             return new ResponseEntity<Payment>(HttpStatus.NOT_FOUND);
         } else {
+            payment.setId(random.nextInt(1000));
             return new ResponseEntity<Payment>(payment, HttpStatus.ACCEPTED);
         }
     }
