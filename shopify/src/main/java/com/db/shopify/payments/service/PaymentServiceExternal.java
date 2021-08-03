@@ -34,10 +34,6 @@ public class PaymentServiceExternal implements PaymentServiceContract {
 
     public Payment insertPayment(Payment payment) throws URISyntaxException {
 
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(new URI("localhost:8081/payments/validation"))
-                .POST(HttpRequest.BodyPublishers.noBody())
-                .build();
         try{
             Payment paymentResponse = externalPaymentInterface.httpValidationFunction(payment);
             System.out.println(paymentResponse);

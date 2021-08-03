@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URISyntaxException;
 import java.util.List;
 
 
@@ -28,7 +29,7 @@ public class PaymentController {
     }
 
     @PostMapping()
-    public ResponseEntity<Payment> insertPayment(@RequestBody Payment payment) {
+    public ResponseEntity<Payment> insertPayment(@RequestBody Payment payment) throws URISyntaxException {
         return ResponseEntity.status(HttpStatus.CREATED).body(paymentService.insertPayment(payment));
     }
 
