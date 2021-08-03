@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @FeignClient(value="remotePaymentService", url="localhost:8081/payments")
-public interface ExternalPaymentInterface {
+public interface HttpPaymentService {
     @RequestMapping(method = RequestMethod.POST, value = "/validation")
-    Payment checkPayment(Payment payment);
+    Payment httpValidationFunction(Payment payment);
 }

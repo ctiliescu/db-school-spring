@@ -15,35 +15,30 @@ import java.util.List;
 @RequestMapping("/payments")
 public class PaymentController {
     @Autowired
-    private PaymentServiceFactory paymentService;
+    private PaymentServiceContract paymentService;
 
     @GetMapping()
     public ResponseEntity<List<Payment>> findAll() {
-        PaymentServiceContract paymentServiceTemp = paymentService.getService(1);
-        return ResponseEntity.status(HttpStatus.OK).body(paymentServiceTemp.findAll());
+        return ResponseEntity.status(HttpStatus.OK).body(paymentService.findAll());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Payment> getById(@PathVariable("id") int id) {
-        PaymentServiceContract paymentServiceTemp = paymentService.getService(1);
-        return ResponseEntity.status(HttpStatus.OK).body(paymentServiceTemp.findById(id));
+        return ResponseEntity.status(HttpStatus.OK).body(paymentService.findById(id));
     }
 
     @PostMapping()
     public ResponseEntity<Payment> insertPayment(@RequestBody Payment payment) {
-        PaymentServiceContract paymentServiceTemp = paymentService.getService(payment.getAmount());
-        return ResponseEntity.status(HttpStatus.CREATED).body(paymentServiceTemp.insertPayment(payment));
+        return ResponseEntity.status(HttpStatus.CREATED).body(paymentService.insertPayment(payment));
     }
 
     @DeleteMapping()
     public ResponseEntity deletePayment(@RequestParam("id") int id) {
-        PaymentServiceContract paymentServiceTemp = paymentService.getService(1);
-        return ResponseEntity.status(HttpStatus.OK).body(paymentServiceTemp.deletePaymentById(id));
+        return ResponseEntity.status(HttpStatus.OK).body(paymentService.deletePaymentById(id));
     }
 
     @PutMapping()
     public ResponseEntity<Payment> updatePayment(@RequestBody Payment payment) {
-        PaymentServiceContract paymentServiceTemp = paymentService.getService(1);
-        return ResponseEntity.status(HttpStatus.OK).body(paymentServiceTemp.updatePayment(payment));
+        return ResponseEntity.status(HttpStatus.OK).body(paymentService.updatePayment(payment));
     }
 }

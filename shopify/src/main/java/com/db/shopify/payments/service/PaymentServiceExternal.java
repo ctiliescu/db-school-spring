@@ -2,10 +2,8 @@ package com.db.shopify.payments.service;
 
 import com.db.shopify.payments.model.Payment;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,13 +11,14 @@ import java.util.List;
 
 @Service
 @Profile("prod")
+@Primary
 public class PaymentServiceExternal implements PaymentServiceContract {
 
     @Autowired
     private PaymentRepository paymentRepository;
 
     @Autowired
-    ExternalPaymentInterface externalPaymentInterface;
+    private HttpPaymentService externalPaymentInterface;
 
     public List<Payment> findAll() {
         return paymentRepository.findAll();
@@ -32,7 +31,8 @@ public class PaymentServiceExternal implements PaymentServiceContract {
     public Payment insertPayment(Payment payment) {
 
         try{
-            Payment paymentResponse = externalPaymentInterface.checkPayment(payment);
+            Payment paymentResponse = externalPaymentInterface.httpValidationFunction(payment);
+            System.out.println(paymentResponse);
             paymentRepository.save(payment);
         } catch (Exception e) {
             System.out.println("ERROR");

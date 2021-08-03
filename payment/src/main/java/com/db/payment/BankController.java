@@ -11,14 +11,16 @@ import java.util.Random;
 
 @RequestMapping("/payments")
 @RestController
-public class PaymentController {
+public class BankController {
 
     @PostMapping("validation")
-    public ResponseEntity<Payment> checkPayment(@RequestBody Payment payment) {
+    public ResponseEntity<Payment> checkPayment(@RequestBody Payment payment) throws InterruptedException {
+        System.out.println("soebody make a request here");
         Random random = new Random();
         if (random.nextInt(10) >= 8) {
             return new ResponseEntity<Payment>(HttpStatus.NOT_FOUND);
         } else {
+            Thread.sleep(5000);
             payment.setId(random.nextInt(1000));
             return new ResponseEntity<Payment>(payment, HttpStatus.ACCEPTED);
         }
