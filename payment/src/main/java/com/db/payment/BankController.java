@@ -14,15 +14,15 @@ import java.util.Random;
 public class BankController {
 
     @PostMapping("validation")
-    public ResponseEntity<Payment> checkPayment(@RequestBody Payment payment) throws InterruptedException {
+    public Payment checkPayment(@RequestBody Payment payment) throws InterruptedException, PaymentRefuseException {
         System.out.println("soebody make a request here");
         Random random = new Random();
-        if (random.nextInt(10) >= 8) {
-            return new ResponseEntity<Payment>(HttpStatus.NOT_FOUND);
+        if (random.nextInt(10) >= 5) {
+            throw new PaymentRefuseException();
         } else {
-            Thread.sleep(5000);
+            Thread.sleep(1000);
             payment.setId(random.nextInt(1000));
-            return new ResponseEntity<Payment>(payment, HttpStatus.ACCEPTED);
+            return payment;
         }
     }
 }
