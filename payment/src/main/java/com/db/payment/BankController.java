@@ -1,7 +1,6 @@
 package com.db.payment;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +13,7 @@ import java.util.Random;
 public class BankController {
 
     @PostMapping("validation")
+    @ApiOperation(value = "This endpoint is use to validate a payment")
     public Payment checkPayment(@RequestBody Payment payment) throws InterruptedException, PaymentRefuseException {
         System.out.println("soebody make a request here");
         Random random = new Random();
