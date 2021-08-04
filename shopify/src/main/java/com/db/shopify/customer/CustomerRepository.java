@@ -18,4 +18,7 @@ public interface CustomerRepository extends CrudRepository<Customer, Integer> {
     List<Customer> getAllByFirstNameAndSort(String lastName, Sort sort);
     @Query("SELECT c FROM Customer c WHERE c.firstName = ?1")
     public List<Customer> giveMeCustomers(String s);
+
+    @Query("SELECT c FROM Customer c WHERE c.username = ?1")
+    public Customer getByUsername(String s);
 }
