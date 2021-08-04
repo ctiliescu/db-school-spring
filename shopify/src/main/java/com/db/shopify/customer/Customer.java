@@ -20,6 +20,7 @@ public class Customer {
     private String city;
     private String postalCode;
     private String country;
+    private String password;
 
     public Customer(int id, String username, String lastName, String firstName, String phone, String address, String city, String postalCode, String country) {
         this.id = id;

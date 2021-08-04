@@ -27,6 +27,9 @@ public class PaymentServiceExternal implements PaymentServiceContract {
     public List<Payment> findAll() {
         return paymentRepository.findAll();
     }
+//    public List<Payment> getAllPayments(List<Payment> paymentList) {
+//        return paymentRepository.findAll
+//    }
 
     public Payment findById(int id) {
         return paymentRepository.getById(id);
