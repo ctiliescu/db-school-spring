@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface CustomerRepository extends CrudRepository<Customer, Integer> {
@@ -18,4 +19,6 @@ public interface CustomerRepository extends CrudRepository<Customer, Integer> {
     List<Customer> getAllByFirstNameAndSort(String lastName, Sort sort);
     @Query("SELECT c FROM Customer c WHERE c.firstName = ?1")
     public List<Customer> giveMeCustomers(String s);
+
+    Optional<Customer> findCustomerByUsernameAndPassword(String username, String password);
 }

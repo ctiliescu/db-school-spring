@@ -15,6 +15,8 @@ public class Customer {
     private String lastName;
     @Column(name = "first_name")
     private String firstName;
+
+    private String password;
     private String phone;
     private String address;
     private String city;
