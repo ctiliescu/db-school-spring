@@ -32,5 +32,8 @@ public class CustomerService implements CustomerServiceContract {
         return customerRepository.getAllByFirstNameAndSort(firstname,Sort.by("id").descending());
     }
 
+    public Customer getCustomersByUsername(String username) {
+        return customerRepository.getCustomersByUsername(username);
+    }
 
 }
