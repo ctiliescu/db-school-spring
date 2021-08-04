@@ -15,7 +15,7 @@ public class BankController {
     @PostMapping("validation")
     @ApiOperation(value = "This endpoint is use to validate a payment")
     public Payment checkPayment(@RequestBody Payment payment) throws InterruptedException, PaymentRefuseException {
-        System.out.println("soebody make a request here");
+        System.out.println("somebody make a request here");
         Random random = new Random();
         if (random.nextInt(10) >= 5) {
             throw new PaymentRefuseException();

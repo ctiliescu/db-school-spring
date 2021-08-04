@@ -17,4 +17,8 @@ public class Payment {
     Date paymentDate;
     @ApiModelProperty(value = "The amount of the payment")
     double amount;
+
+    public void setId(int nextInt) {
+        this.id = nextInt;
+    }
 }

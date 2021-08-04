@@ -27,4 +27,7 @@ public class Payment {
     @Column(name = "amount", precision = 2)
     double amount;
 
+    public Integer getCustomerId() {
+        return customerId;
+    }
 }

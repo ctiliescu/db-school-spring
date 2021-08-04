@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.http.HttpRequest;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 

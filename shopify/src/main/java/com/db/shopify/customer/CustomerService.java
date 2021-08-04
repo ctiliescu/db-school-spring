@@ -1,6 +1,7 @@
 package com.db.shopify.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -22,6 +23,8 @@ public class CustomerService implements CustomerServiceContract {
     public Optional<Customer> getCustomer(int id){
         return customerRepository.findById(id);
     }
+
+    public Customer getCustomerUsername(String username){return (Customer) customerRepository.getAllByUSername(username);}
 
     @Override
     public List<Customer> getCustomersByName(String firstname, int pageNumber) {
