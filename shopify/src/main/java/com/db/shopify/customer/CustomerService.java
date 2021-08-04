@@ -32,5 +32,10 @@ public class CustomerService implements CustomerServiceContract {
         return customerRepository.getAllByFirstNameAndSort(firstname,Sort.by("id").descending());
     }
 
+    @Override
+    public Customer getCustomerForLogin(String username, String password) {
+        return customerRepository.findByUsernameAndPassword(username, password);
+    }
+
 
 }
