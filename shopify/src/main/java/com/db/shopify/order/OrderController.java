@@ -8,6 +8,7 @@ import com.db.shopify.order.service.OrderDetailServiceContract;
 import com.db.shopify.order.service.OrderServiceContract;
 import com.db.shopify.payments.model.Payment;
 import com.db.shopify.payments.service.PaymentServiceContract;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,26 +36,31 @@ public class OrderController {
 
 
     @GetMapping
+    @ApiOperation(value = "List all orders.")
     public ResponseEntity<List<Order>> getAll(){
         return ResponseEntity.status(HttpStatus.OK).body(orderService.getAll());
     }
 
     @GetMapping("/{id}")
+    @ApiOperation(value = "Get an order by id.")
     public ResponseEntity<Order> getById(@PathVariable("id") Long id){
         return ResponseEntity.status(HttpStatus.OK).body(orderService.getById(id));
     }
 
     @PutMapping
+    @ApiOperation(value = "Update an order.")
     public ResponseEntity<Order> updateOrder(@RequestBody Order order) throws IllegalAccessException, CloneNotSupportedException {
         return ResponseEntity.status(HttpStatus.OK).body(orderService.updateOrder(order));
     }
 
     @DeleteMapping
+    @ApiOperation(value = "Delete an order.")
     public ResponseEntity<Order> deleteOrder(@RequestParam("id") Long id){
         return ResponseEntity.status(HttpStatus.OK).body(orderService.deleteOrderById(id));
     }
 
     @PostMapping("/orderWithDetails")
+    @ApiOperation(value = "Place an order with details. Generates a Payment.")
     public ResponseEntity<OrderWithDetailsForm> insertOrderWithDetails(@RequestBody OrderWithDetailsForm orderWithDetailsForm) throws IllegalAccessException, CloneNotSupportedException, URISyntaxException {
         Order order = orderWithDetailsForm.getOrder();
         List<OrderDetail> orderDetailList = orderWithDetailsForm.getOrderDetailList();

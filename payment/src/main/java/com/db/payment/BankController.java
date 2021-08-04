@@ -13,7 +13,7 @@ import java.util.Random;
 public class BankController {
 
     @PostMapping("validation")
-    @ApiOperation(value = "This endpoint is use to validate a payment")
+    @ApiOperation(value = "This endpoint is used to validate a payment")
     public Payment checkPayment(@RequestBody Payment payment) throws InterruptedException, PaymentRefuseException {
         System.out.println("soebody make a request here");
         Random random = new Random();

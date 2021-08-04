@@ -1,5 +1,6 @@
 package com.db.shopify.customer;
 
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +19,11 @@ public class CustomerController {
 
     private Logger logger = LoggerFactory.getLogger(CustomerController.class);
 
-
-
     @Autowired
     private CustomerServiceContract customerService;
 
     @GetMapping
+    @ApiOperation(value = "Get a customer by id.")
     public ResponseEntity<Customer> getCustomer(@RequestParam("id") int id){
         //return customerService.getCustomer(id).map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
         Optional<Customer> customer = customerService.getCustomer(id);
@@ -44,8 +44,8 @@ public class CustomerController {
 
     }
 
-
     @GetMapping("/search")
+    @ApiOperation(value = "Seach for customers by first name.")
     public List<Customer> getCustomersByName(@RequestParam("firstname") String firstname,@RequestParam("pageNumber") int pageNumber){
         return customerService.getCustomersByName(firstname,pageNumber);
     }
@@ -56,11 +56,13 @@ public class CustomerController {
     }
 
     @GetMapping("/search/sort")
+    @ApiOperation(value = "Search for customers by last name and display them sorted alphabetically.")
     public List<Customer> getCustomersSorted(@RequestParam("lastname") String lastname){
         return customerService.getCustomersSorted(lastname);
     }
 
     @PostMapping
+    @ApiOperation(value = "Create a customer.")
     public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer, HttpServletResponse response) {
         final Customer newCustomer = customerService.createCustomer(customer);
         response.addCookie(new Cookie("userId", Integer.toString(newCustomer.getId())));
