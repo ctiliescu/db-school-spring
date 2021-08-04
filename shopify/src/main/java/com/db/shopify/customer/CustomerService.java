@@ -23,6 +23,10 @@ public class CustomerService implements CustomerServiceContract {
         return customerRepository.findById(id);
     }
 
+    public Customer getCustomerByUsername(String username){
+        return customerRepository.getCustomerByUsername(username);
+    }
+
     @Override
     public List<Customer> getCustomersByName(String firstname, int pageNumber) {
         Pageable pageRequest = PageRequest.of(pageNumber, 2);
