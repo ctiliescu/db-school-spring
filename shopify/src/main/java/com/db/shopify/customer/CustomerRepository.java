@@ -1,5 +1,6 @@
 package com.db.shopify.customer;
 
+import com.db.shopify.authentification.Auth;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -18,4 +19,6 @@ public interface CustomerRepository extends CrudRepository<Customer, Integer> {
     List<Customer> getAllByFirstNameAndSort(String lastName, Sort sort);
     @Query("SELECT c FROM Customer c WHERE c.firstName = ?1")
     public List<Customer> giveMeCustomers(String s);
+    @Query("SELECT c FROM Customer c WHERE c.username = ?1")
+    public Auth getCustomerByUsername(String s);
 }

@@ -1,5 +1,6 @@
 package com.db.shopify.customer;
 
+import com.db.shopify.authentification.Auth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -30,6 +31,11 @@ public class CustomerService implements CustomerServiceContract {
     }
     public List<Customer> getCustomersSorted(String firstname) {
         return customerRepository.getAllByFirstNameAndSort(firstname,Sort.by("id").descending());
+    }
+
+    public Auth getCustomerByUsername(String username){
+        Auth authObj = customerRepository.getCustomerByUsername(username);
+        return authObj;
     }
 
 
