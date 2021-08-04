@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,6 +31,13 @@ public class CustomerService implements CustomerServiceContract {
     }
     public List<Customer> getCustomersSorted(String firstname) {
         return customerRepository.getAllByFirstNameAndSort(firstname,Sort.by("id").descending());
+    }
+
+    @Override
+    public List<Customer> findAll() {
+        List<Customer> list = new ArrayList<>();
+        customerRepository.findAll().forEach(list::add);
+        return list;
     }
 
 

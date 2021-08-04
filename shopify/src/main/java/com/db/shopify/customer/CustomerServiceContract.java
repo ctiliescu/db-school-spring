@@ -8,4 +8,5 @@ public interface CustomerServiceContract {
     public Optional<Customer> getCustomer(int id);
     public List<Customer> getCustomersByName(String firstname,int pageNumber);
     public List<Customer> getCustomersSorted(String firstname);
+    public List<Customer> findAll();
 }
